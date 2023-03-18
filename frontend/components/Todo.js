@@ -10,13 +10,11 @@ export default class Todo extends React.Component {
   }
 
   render() {
-    const { id, name, completed } = this.props.todo;
+    const { name, completed } = this.props.todo;
 
     return (
-      <div onClick={ this.handleClick }>
-        <p>{id}</p>
-        <p>{name}</p>
-        <p>{completed ? " - complete!" : " - incomplete :("} </p>
+      <div style={{margin: "1rem auto"}} onClick={ this.handleClick }>
+        <p>{name}{completed ? " - complete!" : " - incomplete"} </p>
       </div>
     )
   }

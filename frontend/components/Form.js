@@ -5,7 +5,7 @@ export default class Form extends React.Component {
     super(props);
   }
   render() {
-    const { newTodo } = this.props;
+    const { newTodo, filtered } = this.props;
     return (
       <>
         {console.log(this.props)}
@@ -19,7 +19,7 @@ export default class Form extends React.Component {
           type="submit"
           onClick={ this.props.handleSubmit }
         />
-        <button>Clear Completed</button>
+        <button onClick={ this.props.handleIncomplete }>{ filtered ? "Show" : "Hide" } Completed</button>
       </>
     )
   }

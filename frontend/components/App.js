@@ -12,7 +12,8 @@ export default class App extends React.Component {
     this.state = {
       todos: [],
       error: "",
-      newTodo: ""
+      newTodo: "",
+      filtered: false
     }
     this.getTodos = this.getTodos.bind(this);
     this.addTodo = this.addTodo.bind(this);
@@ -53,28 +54,45 @@ export default class App extends React.Component {
     this.setState({ ...this.state, newTodo: "" })
   }
 
-  handleInputChange(event) {
+  handleInputChange = (event) => {
     const { value } = event.target;
     this.setState({ ...this.state, newTodo: value });
   }
 
-  handleToggle(currentID) {
+  handleToggle = (currentID) => {
     const { todos } = this.state;
     const clickedID = currentID;
-  
-    this.setState({
-      ...this.state, 
-      todos: todos.map((todo) => {
 
-        if (todo.id === clickedID) {
-          return {
-            ...todo,
-            completed: !todo.completed
-          }
-        }
-        return todo;
+    axios.patch(`${URL}/${clickedID}`)
+      .then(res => {
+        this.setState({
+          ...this.state, todos: todos.map((todo) => {
+            if (todo.id === clickedID) {
+              return res.data.data
+            }
+            return todo;
+          })
+        })
       })
-    })
+      .catch(err => {
+        this.setState({ ...this.state, error: err.response.data.message })
+      })
+  }
+
+  handleIncomplete = () => {
+    const { filtered } = this.state;
+    if (filtered === false) {
+      this.setState({
+        ...this.state, 
+        filtered: true
+      })
+    } else {
+      this.setState({
+        ...this.state, 
+        filtered: false
+      })
+    }
+ 
   }
 
   render() {
@@ -82,8 +100,8 @@ export default class App extends React.Component {
       <div>
         <h1>Welcome</h1>
         <div className="error">{ this.state.error ? this.state.error : "" }</div>
-        <TodoList todos={ this.state.todos } handleToggle={ this.handleToggle }/>
-        <Form newTodo={ this.state.newTodo } handleInputChange={ this.handleInputChange } handleSubmit={ this.handleSubmit }/>
+        <TodoList todos={ this.state.todos } handleToggle={ this.handleToggle } filtered={ this.state.filtered }/>
+        <Form newTodo={ this.state.newTodo } handleInputChange={ this.handleInputChange } handleSubmit={ this.handleSubmit } handleIncomplete={ this.handleIncomplete } filtered={ this.state.filtered }/>
       </div>
 
     )
