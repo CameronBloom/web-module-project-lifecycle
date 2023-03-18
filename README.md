@@ -38,20 +38,20 @@ Other browser/Node/NPM configurations might work but haven't been tested.
 - [x] Visit your app by navigating to `http://localhost:3000` with Chrome.
 
 ## Project Instructions
-
+Zsicz
 ### API Endpoints
 
 The following endpoints exist in this project and should be explored with Postman prior to coding:
 
-- `GET http://localhost:9000/api/todos`
+- [x] `GET http://localhost:9000/api/todos`
   1. Expects no payload
   2. Makes no changes on the server
   3. responds with `200 OK` and a payload with all the todos
-- `POST http://localhost:9000/api/todos`
+- [x] `POST http://localhost:9000/api/todos`
   1. Expects a payload with `name` (string) and optional `completed` (boolean)
   2. Creates a new todo on the server
   3. responds with `201 Created` and a payload with the new todo
-- `PATCH http://localhost:9000/api/todos/:id`
+- [x] `PATCH http://localhost:9000/api/todos/:id`
   1. Expects no payload
   2. Flips the `completed` property on the todo with the id provided in the URL
   3. Responds with `200 OK` and the updated todo
