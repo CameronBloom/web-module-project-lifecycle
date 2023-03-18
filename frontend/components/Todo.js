@@ -5,14 +5,18 @@ export default class Todo extends React.Component {
     super(props);
   }
 
+  handleClick = () => {
+    this.props.handleToggle(this.props.todo.id);
+  }
+
   render() {
     const { id, name, completed } = this.props.todo;
 
     return (
-      <div>
+      <div onClick={ this.handleClick }>
         <p>{id}</p>
         <p>{name}</p>
-        <p>{completed}</p>
+        <p>{completed ? " - complete!" : " - incomplete :("} </p>
       </div>
     )
   }
