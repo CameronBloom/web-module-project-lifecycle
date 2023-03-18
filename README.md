@@ -65,13 +65,13 @@ The API will make other responses if the requests are defective:
 
 Build all components as class components. Find them inside `frontend/components`. Don't focus on styling. We want you to worry about function over form today. Your React application must consume the endpoints above to achieve the following functionality:
 
-- Your app should display a list of todos, an input field, a submit button, and a button to filter out completed todos
-- `<App />` will hold all of the state machinery:
+- [x] Your app should display a list of todos, an input field, a submit button, and a button to filter out completed todos
+- [x] `<App />` will hold all of the state machinery:
   - Application state, held in component state
   - State-changing methods, event handlers
-- `<TodoList />` receives your todos array and iterates over the list generating a new `<Todo />` for each element in the array
-- `<Todo />` is a component that takes in the `todo` data and displays the task to the screen
-- `<Form />` will hold your input field and your `Add Todo` and `Clear Completed` buttons
+- [x] `<TodoList />` receives your todos array and iterates over the list generating a new `<Todo />` for each element in the array
+- [x] `<Todo />` is a component that takes in the `todo` data and displays the task to the screen
+- [x] `<Form />` will hold your input field and your `Add Todo` and `Clear Completed` buttons
   - Your input field should take in user input, and allow a user to press `Enter` or click on the `Submit Button` to add a todo to your list
   - Once a todo is submitted, the Todo List should re-render and show the added todo
 
