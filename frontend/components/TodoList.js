@@ -8,11 +8,9 @@ export default class TodoList extends React.Component {
   
   render() {
     return (
-      this.props["todos"].map((todo, idx) => {
+      this.props["todos"].map((todo) => {
         return (
-          <div key={idx}>
-            <Todo todo={ todo }/>
-          </div>
+          <Todo key={todo.id} todo={ todo }/>
         )
       })
     )
