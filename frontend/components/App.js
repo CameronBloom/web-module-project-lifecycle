@@ -15,6 +15,8 @@ export default class App extends React.Component {
       newTodo: ""
     }
     this.getTodos = this.getTodos.bind(this);
+    this.addTodo = this.addTodo.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
   // runs after first render
@@ -28,13 +30,26 @@ export default class App extends React.Component {
     axios.get(URL)
       .then((res) => {
         this.setState({ ...this.state, todos: res.data.data })
-        return res.data.data;
       })
-      // .then((res) => { console.log(res) })
       .catch(err => {
-        console.log(err)
         this.setState({ ...this.state, error: err.response.data.message })
       })
+  }
+
+  addTodo = () => {
+    axios.post(URL, { name: this.state.newTodo })
+      .then(() => { 
+        this.getTodos();
+       })
+      .catch(err => {
+        this.setState({ ...this.state, error: err.response.data.message })
+      })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.addTodo();
+    this.setState({ ...this.state, newTodo: "" })
   }
 
   handleInputChange(event) {
@@ -48,7 +63,7 @@ export default class App extends React.Component {
         <h1>Welcome</h1>
         <div className="error">{ this.state.error ? this.state.error : "" }</div>
         <TodoList todos={ this.state.todos }/>
-        <Form newTodo={ this.state.newTodo } handleInputChange={ this.handleInputChange } />
+        <Form newTodo={ this.state.newTodo } handleInputChange={ this.handleInputChange } handleSubmit={ this.handleSubmit }/>
       </div>
 
     )

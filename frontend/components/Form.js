@@ -12,10 +12,13 @@ export default class Form extends React.Component {
         <input 
           type="text" 
           value={ newTodo } 
-          onChange={this.props.handleInputChange}
+          onChange={ this.props.handleInputChange }
           placeholder="What would you like to add?" 
         />
-        <input type="submit"></input>
+        <input 
+          type="submit"
+          onClick={ this.props.handleSubmit }
+        />
         <button>Clear Completed</button>
       </>
     )
